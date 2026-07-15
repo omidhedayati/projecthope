@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useTranslations } from "@/hooks/use-translations";
 
 export function LoadingScreen() {
+  const t = useTranslations();
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
   const reducedMotion = useReducedMotion();
@@ -41,7 +43,7 @@ export function LoadingScreen() {
     >
       <div className="w-[min(32rem,calc(100vw-2rem))] text-center">
         <p className="font-mono text-xs uppercase tracking-[0.6em] text-[var(--accent-cyan)]">
-          Initializing Experience
+          {t.loading.initializing}
         </p>
         <div className="mt-8 overflow-hidden text-6xl font-semibold tracking-[-0.08em] text-[var(--color-ink)] md:text-8xl">
           Hope

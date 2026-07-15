@@ -4,25 +4,25 @@ import { Monitor, Smartphone, TabletSmartphone } from "lucide-react";
 import { useState } from "react";
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { SectionHeader } from "@/components/ui/section-header";
-import { applications } from "@/lib/site-data";
+import { useTranslations } from "@/hooks/use-translations";
 
 const icons = [Monitor, Smartphone, TabletSmartphone];
 
 export function ApplicationsSection() {
+  const t = useTranslations();
   const [activeIndex, setActiveIndex] = useState(0);
-  const active = applications[activeIndex];
+  const active = t.applications.items[activeIndex];
   const Icon = icons[activeIndex];
 
   return (
-    <section id="applications" className="relative px-4 py-28 md:px-6 md:py-40">
+    <section id="applications" data-chapter="Loadouts" className="relative px-4 py-28 md:px-6 md:py-40">
       <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.8fr_1.2fr]">
         <div>
-          <SectionHeader eyebrow="Applications" title="Desktop, mobile, and cross-platform surfaces.">
-            The same craft applies beyond the browser: native-feeling controls, offline behavior,
-            local data, sync, platform constraints, and product-grade microinteractions.
+          <SectionHeader eyebrow={t.applications.eyebrow} title={t.applications.title}>
+            {t.applications.description}
           </SectionHeader>
           <div className="mt-10 flex flex-wrap gap-3" data-reveal>
-            {applications.map((app, index) => (
+            {t.applications.items.map((app, index) => (
               <button
                 key={app.title}
                 type="button"

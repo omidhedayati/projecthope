@@ -1,48 +1,25 @@
+"use client";
+
 import { Bot, Bookmark, Newspaper, Share2, Trophy } from "lucide-react";
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { SectionHeader } from "@/components/ui/section-header";
+import { useTranslations } from "@/hooks/use-translations";
 
-const extras = [
-  {
-    title: "AI assistant",
-    copy: "Placeholder surface for a future project guide, resume assistant, or portfolio copilot.",
-    icon: Bot,
-  },
-  {
-    title: "Blog and case studies",
-    copy: "Route structure is ready for long-form technical writing and product breakdowns.",
-    icon: Newspaper,
-  },
-  {
-    title: "Bookmarks",
-    copy: "Designed as a future layer for visitors to save projects or compare capabilities.",
-    icon: Bookmark,
-  },
-  {
-    title: "Share project",
-    copy: "Project actions are structured so social sharing can be added without changing showcases.",
-    icon: Share2,
-  },
-  {
-    title: "Achievements",
-    copy: "A flexible area for awards, shipped milestones, certifications, or open-source wins.",
-    icon: Trophy,
-  },
-];
+const extraIcons = [Bot, Newspaper, Bookmark, Share2, Trophy];
 
 export function ExtrasSection() {
+  const t = useTranslations();
+
   return (
-    <section id="ai-assistant" className="relative px-4 py-28 md:px-6 md:py-40">
+    <section id="ai-assistant" data-chapter="Hidden Systems" className="relative px-4 py-28 md:px-6 md:py-40">
       <div className="mx-auto max-w-[1440px]">
-        <SectionHeader eyebrow="Extras" title="Built to grow into a living product.">
-          The first launch includes polished placeholders for features that can become real product
-          surfaces: AI assistant, blog, case studies, bookmarks, sharing, achievements, analytics,
-          and newsletter capture.
+        <SectionHeader eyebrow={t.extras.eyebrow} title={t.extras.title}>
+          {t.extras.description}
         </SectionHeader>
 
         <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
-          {extras.map((extra) => {
-            const Icon = extra.icon;
+          {t.extras.items.map((extra, index) => {
+            const Icon = extraIcons[index];
             return (
               <GlassPanel key={extra.title}>
                 <div data-reveal>

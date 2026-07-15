@@ -1,31 +1,37 @@
+"use client";
+
 import { GlassPanel } from "@/components/ui/glass-panel";
 import { SectionHeader } from "@/components/ui/section-header";
-import { skillClusters } from "@/lib/site-data";
+import { useTranslations } from "@/hooks/use-translations";
 
 export function SkillsConstellation() {
+  const t = useTranslations();
+
   return (
-    <section id="skills" className="relative overflow-hidden px-4 py-28 md:px-6 md:py-40">
+    <section id="skills" data-chapter="Abilities" className="relative overflow-hidden px-4 py-28 md:px-6 md:py-40">
       <div className="mx-auto max-w-[1440px]">
-        <SectionHeader eyebrow="Skills" title="A constellation of product capabilities.">
-          No progress bars. The point is not percentage theater. It is the ability to connect
-          frontend craft, backend architecture, games, applications, and AI into coherent products.
+        <SectionHeader eyebrow={t.skills.eyebrow} title={t.skills.title}>
+          {t.skills.description}
         </SectionHeader>
 
-        <div className="relative mt-16 grid min-h-[44rem] place-items-center">
-          <div className="absolute h-[32rem] w-[32rem] rounded-full border border-[var(--color-line)]" />
-          <div className="absolute h-[22rem] w-[22rem] rounded-full border border-[var(--color-line)]" />
-          <div className="absolute h-[12rem] w-[12rem] rounded-full border border-[var(--color-line)]" />
-          <GlassPanel className="relative z-10 max-w-sm text-center">
+        <div className="relative mt-16 grid min-h-[46rem] place-items-center overflow-hidden rounded-[3rem] border border-[var(--color-line)] bg-[linear-gradient(135deg,rgba(255,255,255,.055),transparent)] p-4">
+          <div className="absolute inset-8 bg-[linear-gradient(rgba(136,247,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(136,247,255,.08)_1px,transparent_1px)] bg-[size:56px_56px] opacity-45 [mask-image:radial-gradient(circle_at_center,black,transparent_74%)]" />
+          <div className="absolute left-1/2 top-1/2 h-px w-[78%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[var(--accent-cyan)]/45 to-transparent" />
+          <div className="absolute left-1/2 top-[18%] h-[64%] w-px bg-gradient-to-b from-transparent via-[var(--accent-cyan)]/35 to-transparent" />
+          <GlassPanel className="relative z-10 max-w-sm text-center shadow-[0_0_80px_rgba(136,247,255,.14)]">
             <p className="font-mono text-xs uppercase tracking-[0.35em] text-[var(--accent-cyan)]">
-              Core
+              {t.skills.coreAbility}
             </p>
             <h3 className="mt-4 text-4xl font-semibold tracking-[-0.08em] text-[var(--color-ink)]">
-              Complex software, designed as experience.
+              {t.skills.coreTitle}
             </h3>
+            <p className="mt-4 text-sm leading-6 text-[var(--color-muted)]">
+              {t.skills.coreDescription}
+            </p>
           </GlassPanel>
 
           <div className="absolute inset-0">
-            {skillClusters.map((cluster, index) => {
+            {t.skills.clusters.map((cluster, index) => {
               const positions = [
                 "left-[4%] top-[18%]",
                 "right-[6%] top-[12%]",
@@ -41,7 +47,7 @@ export function SkillsConstellation() {
                 >
                   <div data-reveal>
                     <p className="font-mono text-xs uppercase tracking-[0.35em] text-[var(--accent-champagne)]">
-                      Orbit {cluster.orbit + 1}
+                      {t.skills.abilityNode} {cluster.orbit + 1}
                     </p>
                     <h3 className="mt-3 text-2xl font-semibold tracking-[-0.05em] text-[var(--color-ink)]">
                       {cluster.title}

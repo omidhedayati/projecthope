@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: "/audio/ivress/:path*",
+        destination: "https://brand.ivress.co.jp/audio/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

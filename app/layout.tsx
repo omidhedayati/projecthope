@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import { AmbientBackground } from "@/features/background/ambient-background";
 import { CommandPalette } from "@/features/command/command-palette";
 import { CustomCursor } from "@/features/cursor/custom-cursor";
+import { GameShell } from "@/features/game-shell/game-shell";
 import { LoadingScreen } from "@/features/loading/loading-screen";
 import { SiteNav } from "@/components/layout/site-nav";
 import { AppProviders } from "@/providers/app-providers";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { AmbientAudio } from "@/features/audio/ambient-audio";
+import { LocaleProvider } from "@/providers/locale-provider";
 import { siteConfig } from "@/lib/site-data";
 import "./globals.css";
 
@@ -18,6 +22,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const vazirmatn = Vazirmatn({
+  variable: "--font-vazirmatn",
+  subsets: ["arabic"],
 });
 
 export const metadata: Metadata = {
@@ -57,19 +66,23 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="dark"
-      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full overflow-x-hidden">
-        <ThemeProvider>
-          <AppProviders>
-            <AmbientBackground />
-            <LoadingScreen />
-            <SiteNav />
-            {children}
-            <CommandPalette />
-            <CustomCursor />
-          </AppProviders>
-        </ThemeProvider>
+        <LocaleProvider>
+          <ThemeProvider>
+            <AppProviders>
+              <AmbientBackground />
+              <AmbientAudio />
+              <LoadingScreen />
+              <SiteNav />
+              <GameShell />
+              {children}
+              <CommandPalette />
+              <CustomCursor />
+            </AppProviders>
+          </ThemeProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

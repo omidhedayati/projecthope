@@ -25,14 +25,14 @@ export function Button({ href, children, variant = "primary", className }: Butto
 
   if (isExternal) {
     return (
-      <a className={classes} href={href} target="_blank" rel="noreferrer" data-cursor="Open">
+      <a className={classes} href={href} target="_blank" rel="noreferrer" data-cursor="Open Link">
         <span className="relative z-10">{children}</span>
       </a>
     );
   }
 
   return (
-    <Link className={classes} href={href} data-cursor="Open">
+    <Link className={classes} href={href} data-cursor="Open Quest">
       <span className="relative z-10">{children}</span>
     </Link>
   );

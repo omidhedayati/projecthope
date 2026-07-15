@@ -20,6 +20,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-persian: var(--font-vazirmatn);
 }
 
 [data-theme="light"] {
@@ -46,6 +47,14 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-vazirmatn), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+html[dir="rtl"] .font-mono {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 ::selection {
@@ -84,6 +93,110 @@ a {
 
 .animate-float {
   animation: float 8s ease-in-out infinite;
+}
+
+.wisp-body-idle {
+  animation: wisp-body-idle 2.8s ease-in-out infinite;
+}
+
+.wisp-body-hover {
+  animation: wisp-body-hover 1.6s ease-in-out infinite;
+}
+
+.wisp-wing-left {
+  transform-origin: 10px 20px;
+  animation: wisp-wing-left 2.4s ease-in-out infinite;
+}
+
+.wisp-wing-right {
+  transform-origin: 34px 20px;
+  animation: wisp-wing-right 2.4s ease-in-out infinite;
+}
+
+.wisp-antenna {
+  transform-origin: 22px 10px;
+  animation: wisp-antenna 2s ease-in-out infinite;
+}
+
+.wisp-core-pulse {
+  transform-origin: 22px 20px;
+  animation: wisp-core-pulse 2.2s ease-in-out infinite;
+}
+
+.wisp-scanner-spin {
+  transform-origin: 22px 22px;
+  animation: wisp-scanner-spin 9s linear infinite;
+}
+
+@keyframes wisp-body-idle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+@keyframes wisp-body-hover {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0) scale(1.06);
+  }
+}
+
+@keyframes wisp-wing-left {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes wisp-wing-right {
+  0%,
+  100% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes wisp-antenna {
+  0%,
+  100% {
+    transform: rotate(-6deg);
+  }
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes wisp-core-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes wisp-scanner-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes aurora {
